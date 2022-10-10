@@ -1,5 +1,4 @@
 const {MessageEmbed, CommandInteraction} = require('discord.js');
-const {EmbedBuilder} = require('@discordjs/builders');
 const Command = require("../../../classes/Command.js");
 const Dalle = import("dalle-node");
 
@@ -52,21 +51,12 @@ class ImageCommand extends Command {
                     }],
                 });
             } catch (error) {
-                if (error.response) {
-                    const embed = new MessageEmbed()
-                        .setTitle("OpenAI - Fehler")
-                        .setDescription(error.response.data)
-                        .setColor("RED")
-                        .setTimestamp();
-                    return this.response(embed);
-                } else {
                     const embed = new MessageEmbed()
                         .setTitle("OpenAI - Fehler")
                         .setDescription(error.message)
                         .setColor("RED")
                         .setTimestamp();
                     return this.response(embed);
-                }
             }
         }
     };

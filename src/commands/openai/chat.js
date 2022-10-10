@@ -1,5 +1,5 @@
 const { MessageEmbed, CommandInteraction } = require('discord.js');
-const Command = require("../../../classes/Command.js");
+const Command = require("../../classes/Command.js");
 const { Configuration, OpenAIApi } = require("openai");
 
 class ChatCommand extends Command {
@@ -55,21 +55,12 @@ class ChatCommand extends Command {
                     .setTimestamp();
                 return this.response(embed);
             } catch (error) {
-                if (error.response) {
-                    const embed = new MessageEmbed()
-                        .setTitle("OpenAI - Fehler")
-                        .setDescription(error.response.data)
-                        .setColor("RED")
-                        .setTimestamp();
-                    return this.response(embed);
-                } else {
                     const embed = new MessageEmbed()
                         .setTitle("OpenAI - Fehler")
                         .setDescription(error.message)
                         .setColor("RED")
                         .setTimestamp();
                     return this.response(embed);
-                }
             }
         }
     };
